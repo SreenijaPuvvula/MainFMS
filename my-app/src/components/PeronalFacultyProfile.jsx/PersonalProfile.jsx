@@ -1,66 +1,73 @@
-import { useLocation } from "react-router-dom";
-import tableInfo from "../Admin/tableInfo";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./profile.css";
 import additionalInfo from "./additionalInfo";
+import axios from "axios";
+import { useLocation, useParams } from "react-router-dom";
 
-function PersonalProfile(props) {
+function PersonalProfile() {
 
+    const r = useParams();
     const location = useLocation();
-    const facultyId = location.state;
-    console.log(facultyId);
+    const facultyInfo = location.state;
+    const [facultyData, setFacultyData] = useState({});
+    console.log(r)
 
-    let data;
-    tableInfo.map((tableItem) => {
-        if (tableItem.id === facultyId) {
-            return data = tableItem;
+    useEffect(() => {
+        if (Object.entries(r).length !== 0) {
+            axios.post('http://localhost:8080/api/getFacultyProfile', {
+                facID: r.id
+            })
+                .then((res) => {
+                    console.log("in axios then")
+                    setFacultyData(res.data)
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
         }
         else {
-            console.log("Couldn't find")
+            setFacultyData(facultyInfo)
         }
-    })
-    console.log(data);
+    }, [])
 
-    function handleLegend(item1,item2){
-        if(item1!=="legend"){
-           return (item1);
+    function handleLegend(item1, item2) {
+        if (item1 !== "legend") {
+            return (item1);
         }
-        else{
-            return(
+        else {
+            return (
                 <h2>{item2}</h2>
             )
         }
     }
 
-    function handleLegendValue(item1,item2){
-        if(item1==="legend"){
+    function handleLegendValue(item1, item2) {
+        if (item1 === "legend") {
             return "";
         }
-        else{
+        else {
             return item2;
         }
     }
-    function handleColon(item1,item2){
-        if(item1==="legend"){
+    function handleColon(item1, item2) {
+        if (item1 === "legend") {
             return "";
         }
-        else{
+        else {
             return ":";
         }
     }
 
-    function createContainer(props) {
-        console.log(props)
-        console.log(" ");
+    function handleAdditonalInfo(props) {
         let entries = Object.entries(props);
         console.log(entries)
         return (
             entries.map((item) => {
                 return (
-                    <div>
-                        <label>{handleLegend(item[0],item[1])}</label>
-                        <span>{handleColon(item[0],item[1])}</span>
-                        <span> {handleLegendValue(item[0],item[1])}</span>
+                    <div >
+                        <label>{handleLegend(item[0], item[1])}</label>
+                        <span>{handleColon(item[0], item[1])}</span>
+                        <span> {handleLegendValue(item[0], item[1])}</span>
                     </div>
                 )
             }))
@@ -68,73 +75,176 @@ function PersonalProfile(props) {
 
     return (
         <div>
-            <img className="facultyProfilePage" />
+            <img className="facultyProfilePage" alt="" />
             <form className="facultyContainer">
                 <div className="imgContainer" >
-                    <img src={data.img} alt="" className="facultyImg" />
+
+                    <img src="" alt="" className="facultyImg" />
                     <div >
-                        <h2 >{data.facultyName}</h2>
+                        <h2 >{facultyData.facultyName}</h2>
                     </div>
                 </div>
                 <div className="facultyInfoContainer">
-                    
                     <div>
                         <label>FacultyID   </label>
                         <span>:</span>
-                        <span> {data.id}</span>
+                        <span> {facultyData.fid}</span>
                     </div>
 
                     <div>
                         <label>Gender </label>
                         <span>:</span>
-                        <span> {data.gender}</span>
+                        <span> {facultyData.gender}</span>
                     </div>
                     <div>
                         <label>Date Of Join  </label>
                         <span>:</span>
-                        <span> {data.dateOfJoin}</span>
+                        <span> {facultyData.doj}</span>
                     </div>
                     <div>
                         <label>Age  </label>
                         <span>:</span>
-                        <span> {data.age}</span>
+                        <span> {facultyData.age}</span>
                     </div>
                     <div>
                         <label>Department  </label>
                         <span>:</span>
-                        <span> {data.department}</span>
+                        <span> {facultyData.department}</span>
                     </div>
                     <div>
                         <label>Designation  </label>
                         <span>:</span>
-                        <span> {data.designation}</span>
+                        <span> {facultyData.designation}</span>
                     </div>
                     <div>
                         <label>Education  </label>
                         <span>:</span>
-                        <span> {data.education}</span>
+                        <span> {facultyData.education}</span>
                     </div>
                     <div>
                         <label>Email  </label>
                         <span>:</span>
-                        <span> {data.email}</span>
+                        <span> {facultyData.email}</span>
                     </div>
                     <div>
                         <label>Mobile  </label>
                         <span>:</span>
-                        <span> {data.phno}</span>
+                        <span> {facultyData.mobile}</span>
                     </div>
                     <div>
                         <label>Experience  </label>
                         <span>:</span>
-                        <span> {data.experience}</span>
+                        <span> {facultyData.experience}</span>
                     </div>
-                    {additionalInfo.map(createContainer)}
                 </div>
+                <div className="facultyInfoContainer">
+                    {additionalInfo.map(handleAdditonalInfo)}
+                </div>
+
             </form>
         </div>
-
-
     )
 }
 export default PersonalProfile;
+
+
+
+// function handleLegendValue(item1, item2) {
+//     if (item1 === "legend") {
+//         return "";
+//     }
+//     else {
+//         return item2;
+//     }
+// }
+// function handleColon(item1, item2) {
+//     if (item1 === "legend") {
+//         return "";
+//     }
+//     else {
+//         return ":";
+//     }
+// }
+
+// function createContainer(props) {
+//     console.log(props)
+//     console.log(" ");
+//     let entries = Object.entries(props);
+//     console.log(entries)
+//     return (
+//         entries.map((item) => {
+//             return (+
+//                 <div>
+//                     <label>{handleLegend(item[0], item[1])}</label>
+//                     <span>{handleColon(item[0], item[1])}</span>
+//                     <span> {handleLegendValue(item[0], item[1])}</span>
+//                 </div>
+//             )
+//         }))
+// }
+{/* <div>
+<img className="facultyProfilePage" />
+<form className="facultyContainer">
+    <div className="imgContainer" >
+        <img src={data.img} alt="" className="facultyImg" />
+        <div >
+            <h2 >{data.facultyName}</h2>
+        </div>
+    </div>
+    <div className="facultyInfoContainer">
+
+        <div>
+            <label>FacultyID   </label>
+            <span>:</span>
+            <span> {data.id}</span>
+        </div>
+
+        <div>
+            <label>Gender </label>
+            <span>:</span>
+            <span> {data.gender}</span>
+        </div>
+        <div>
+            <label>Date Of Join  </label>
+            <span>:</span>
+            <span> {data.dateOfJoin}</span>
+        </div>
+        <div>
+            <label>Age  </label>
+            <span>:</span>
+            <span> {data.age}</span>
+        </div>
+        <div>
+            <label>Department  </label>
+            <span>:</span>
+            <span> {data.department}</span>
+        </div>
+        <div>
+            <label>Designation  </label>
+            <span>:</span>
+            <span> {data.designation}</span>
+        </div>
+        <div>
+            <label>Education  </label>
+            <span>:</span>
+            <span> {data.education}</span>
+        </div>
+        <div>
+            <label>Email  </label>
+            <span>:</span>
+            <span> {data.email}</span>
+        </div>
+        <div>
+            <label>Mobile  </label>
+            <span>:</span>
+            <span> {data.phno}</span>
+        </div>
+        <div>
+            <label>Experience  </label>
+            <span>:</span>
+            <span> {data.experience}</span>
+        </div>
+        {additionalInfo.map(createContainer)}
+    </div>
+</form>
+</div> */}

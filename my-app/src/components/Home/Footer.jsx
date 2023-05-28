@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <footer>
-            <p>Copyright © 2023 CVR College of Engineering, All Rights Reserved.</p>
+            <p>CVR College Of Engineering,<br />Vastunagar, Mangalpalli (V), Ibrahimpatnam (M),<br />Rangareddy (D), Telangana 501 51</p>
         </footer>
     )
 }

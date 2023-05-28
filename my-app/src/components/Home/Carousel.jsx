@@ -8,22 +8,30 @@ function ControlledCarousel() {
         setIndex(selectedIndex);
     };
 
-    return (
-        <Carousel activeIndex={index} onSelect={handleSelect} className='carouselContainer'>
+    const images = [
+        "images/cseblock.jpg",
+        "images/collegeOverview.jpg",
+        "images/cvrpic4.jpg",
+        "images/cvrpic5.jpg",
+    ]
+    function createImage(image) {
+        return (
             <Carousel.Item >
                 <img
                     className="d-block  carouselImage"
-                    src="images/cseblock.jpg"
+                    src={image}
                     alt="First slide"
                 />
             </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block carouselImage"
-                    src="images/collegeOverview.jpg"
-                    alt="Second slide"
-                />
-            </Carousel.Item>
+        )
+
+    }
+    return (
+        <Carousel activeIndex={index} onSelect={handleSelect} className='carouselContainer'>
+
+            {images.map(createImage)}
+
+
         </Carousel>
     );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Add.css";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 function CreateForm(props) {
@@ -8,25 +9,39 @@ function CreateForm(props) {
     const navigate = useNavigate();
 
     function handleSubmit(event) {
+        console.log(object);
+        console.log("----------")
+        console.log(object.facultyImage)
         event.preventDefault();
-        props.parentCallback(object);
-        alert("Data Submitted Successfully");
+        axios({
+            url: 'http://localhost:8080/api/save',
+            method: 'POST',
+            data: object
+        })
+            .then((res) => {
+                alert(res.data);
+                console.log("Data has been sent to the server");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         navigate("/admin");
     }
 
     function handleChange(event) {
-        const temp = event.target.value;
-        setObject({ ...object, [event.target.name]: temp });
+        console.log(event.target);
+        setObject({ ...object, [event.target.name]: event.target.value });
     }
 
 
 
     function createInput(info, index) {
         return (
+
             <div class="form-group formItem" key={index}>
                 <label for="validationCustomUsername" class="form-label">{info.label}</label>
                 <div class="input-group has-validation">
-                    <input type={info.type} className="form-control" id="validationCustomUsername" name={info.name} onChange={handleChange} value={object.name} required />
+                    <input type={info.type} className="form-control" id="validationCustomUsername" name={info.name} onChange={handleChange} value={object.name} />
                 </div>
             </div>
         )
@@ -35,12 +50,11 @@ function CreateForm(props) {
     return (
         <form className="row needs-validation mx-auto p-2 formDiv" onSubmit={handleSubmit} novalidate>
             <legend>Faculty Details</legend>
-
             <div >
                 {props.details.map(createInput)}
             </div>
             <div class="col-12">
-                <button class="btn btn-secondary submitBtn" type="submit" >Submit</button>
+                <button class="btn btn-secondary submitBtn" type="submit">Submit</button>
             </div>
         </form>
     )

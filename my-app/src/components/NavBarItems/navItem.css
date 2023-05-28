@@ -1,0 +1,164 @@
+.contact {
+	margin: 3%;
+}
+.contactItem {
+	margin: 3rem;
+}
+.contactItem p {
+	margin-bottom: 0;
+}
+.contactItem h5 {
+	color: #002333;
+}
+.socialIcons a {
+	margin-right: 1rem;
+	font-size: 2rem;
+}
+.socialIcons i {
+	color: #159a9c;
+}
+.mapLink {
+	color: #159a9c;
+}
+.mapLink:hover {
+	color: #002333;
+}
+header {
+	position: relative;
+	padding: 0px 30px;
+	margin: 0 8%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.header1::-webkit-scrollbar {
+	display: none;
+}
+
+.sec1 {
+	position: relative;
+	width: 52%;
+	height: fit-content;
+	background: #fff;
+	box-shadow: 0px 0px 10px -1px rgb(0, 0, 0);
+	padding: 0px 20px;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+	font-weight: 600;
+}
+
+header nav div #logo {
+	height: 95px;
+}
+
+.sec2 {
+	position: relative;
+	width: 50%;
+	background: #fff;
+	box-shadow: 0px 0px 5px -1px rgb(0, 0, 0);
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+	height: 450px;
+	margin-bottom: 2rem;
+	margin-right: 2rem;
+}
+
+.sec2 .grid-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	text-align: center;
+	opacity: 1;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+}
+
+.grid-item {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	box-shadow: 0px 0px 5px -1px rgb(0, 0, 0);
+	padding: 0px 30px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.sec3 {
+	justify-content: right;
+	align-items: right;
+	margin-left: auto;
+	margin-top: 10px;
+	width: fit-content;
+	margin-right: 50px;
+}
+.sec4{
+	margin-left: 3rem;
+}
+
+.sec4 #hod,
+#vicePrincipal {
+	width: 180px;
+	height: 180px;
+	border-radius: 10px;
+	margin-left: 1rempx;
+	margin-top: 2rem;
+}
+
+#vicePrincipal {
+	margin-top: 40px;
+}
+
+.sec4 .grid-container2 {
+	display: grid;
+	flex-direction: column;
+	grid-template-columns: auto auto;
+	flex-wrap: wrap;
+}
+
+.grid-item2 {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.grid-item3 {
+	margin-top: 3rem;
+	margin-left: 2rem;
+}
+
+.grid-item3 #p1 {
+	font-weight: bold;
+}
+
+.grid-item4 {
+	margin-top: 3rem;
+	margin-left: 2rem;
+}
+
+.grid-item4 #p1 {
+	font-weight: bolder;
+}
+.header {
+	position: relative;
+	background-color: #002333;
+}
+.brand {
+	color: #b4bec9;
+	font-size: 2.5rem;
+}
+.brand:visited {
+	color: #b4bec9;
+}
+.cvrLogo {
+	height: 70px;
+}
+
+.deptHeading {
+	margin: 2rem;
+}

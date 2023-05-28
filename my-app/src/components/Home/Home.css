@@ -1,7 +1,7 @@
 .carouselImage {
-	width: 500px;
-	height: 400px;
-	margin: 20px auto 50px auto;
+	width: 1000px;
+	height: 470px;
+	margin: 20px auto 30px auto;
 	display: block;
 	border-radius: 5px;
 }
@@ -9,7 +9,7 @@
 .carousel-control-next-icon {
 	filter: invert(1);
 }
-.carouselContainer{
+.carouselContainer {
 	margin-top: 30px;
 }
 .listItems {
@@ -23,24 +23,51 @@
 .listItems a {
 	margin-right: 5rem;
 }
+.navItem {
+	color: rgb(60, 60, 60);
+}
+.navItem:hover {
+	color: #002333;
+}
 
 #login {
-	position: absolute;
-	right: 1px;
+	border: 1px solid rgb(60, 60, 60);
+	color: rgb(60, 60, 60);
+	position: static;
+	margin-left: 48rem;
 	margin-top: 1px;
+	text-align: center;
 	overflow: hidden;
 }
 #login:hover {
 	background-color: #159a9c;
+	color: white;
 }
 #navbarSupportedContent {
-	background-color: #e2e4e6;
 	padding: 7px;
 }
-.homeInfo{
+.homeInfo {
 	padding: 7px;
-	margin-top: 20px;
-	color: dimgray;
+	margin-top: 10px;
+	color: rgb(60, 60, 60);
+	text-align: center;
+}
+.image {
+	border-radius: 5%;
+	width: 280px;
+	height: 250px;
+}
+.dropItem:hover {
+	background-color: #b4bec9;
+}
+.dropDownMenu {
+	background-color: #b4bec9;
+}
+div .bodyshape {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 footer {
 	background-color: #002333;
